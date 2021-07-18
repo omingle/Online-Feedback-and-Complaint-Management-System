@@ -13,13 +13,3 @@ TECHNOLOGY USED:
 2. CSS
 3. PHP
 4. MySQL
-
-
-
-
-
-
-
-
-
-NOTE: Chnage the locations used in project.
