@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="Chart.min.js"></script>
+        <script src="jquery.js"></script>
+    </head>
+    <body>
+    <h1 style="text-align: center">Display a bar graph</h1>
+    
+    <!-- Graph will be rendered here -->
+    <canvas id="barChart"></canvas>
+    <p>source : <a href="http://hibare.in">http://hibare.in</a></p>    
+    
+        
+    <!-- When document is ready make an ajax request -->
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                beforeSend: function() {
+                    console.log("Making AJAX request");
+                },
+                cache: false,
+                url: 'bargraph.php',
+                dataType: 'json',
+                success: function(res) {
+                    var graphLabels = [],
+                        graphData = [];
+                    for(var i=0;i<res.length;i++){
+                        graphData.push(res[i].visits);
+                        graphLabels.push(res[i].Country);
+                    }
+                    //Make a call to the function to draw the bar graph
+                    drawGraph(graphLabels, graphData);
+                },
+                complete: function() {
+                    console.log("AJAX request done");
+                },
+                error: function() {
+                    console.log("Error occurred during AJAX request")
+                }               
+            });
+        }); 
+        
+        function drawGraph(Labels, Data){
+              var ctxB = document.getElementById("barChart").getContext('2d');
+            var myBarChart = new Chart(ctxB, {
+                type: 'bar',
+                data: {
+                    labels: Labels,
+                    datasets: [{
+                        label: 'no. of visits',
+                        data: Data,
+                        backgroundColor:'#0318CF',
+                        borderWidth: 1
+                    }]
+                },
+                optionss: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });  
+        }
+        
+    </script>
+    </body>
+    
+</html>
