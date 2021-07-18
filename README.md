@@ -1,8 +1,6 @@
 # Online-Feedback-and-Complaint-Management-System
 
-A system that takes the proper feedback, about college and
-staff, from students and displays it to institute admin in
-graphical form.  
+A system that takes the proper feedback, about courses, stafff and college, from students and displays it to institute admin in graphical form.
 The system also acts as a complaint box for students
 
 The Online College Feedback System mainly consists of Three Modules:
